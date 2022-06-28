@@ -1,0 +1,10 @@
+[
+    {"title":"nueces 100gr","img":"./img/frutos6.jpg","description":"Nuez mariposa extra light x 100gr","price":"180","codBarras":"1009"},
+    {"title":"Almendras 100gr","img":"./img/frutos2.jpg","description":"Almendra non pareil x 100gr.","price":"240","codBarras":"1008"},
+    {"title":"Pistacho tostado 100gr","img":"./img/frutos5.jpg","description":"Pistacho tostado y salado con cascara x 100gr.","price":"250","codBarras":"1007"},
+    {"title":"Mix frutas secas 100gr","img":"./img/mixfrutos.jpeg","description":"Mix premium de frutas secas x 100gr.","price":"200","codBarras":"1009"},
+    {"title":"Castañas naturales 100gr","img":"./img/frutos1.jpg","description":"Castañas de caju naturales x 100gr.","price":"235","codBarras":"1001"},
+    {"title":"Postre Phillosopeat","img":"./img/phillosopheat.jpeg","description":"Postre keto sin harinas ni azucar.","price":"400","codBarras":"1002"},
+    {"title":"Clorofila liquida Natier","img":"./img/sintacc.jpg","description":"Clorofila liquida bebible Natier.","price":"600","codBarras":"1003"},
+    {"title":"Mix semillas x 250gr","img":"./img/frutos4.jpg","description":"Mix de semillas x 250gr.","price":"80","codBarras":"1004"}
+]
