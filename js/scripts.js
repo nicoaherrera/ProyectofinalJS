@@ -33,6 +33,7 @@ const renderProducts = (products = []) => {
   products.forEach((product) => {
     const result = createBootstrapCard(product);
     domElements.productsContainer.appendChild(result);
+    
   });
   return;
 };
@@ -58,19 +59,16 @@ function addToCarritoItem(e){
 
 function addItemCarrito(newItem){
 
-  const alert = document.querySelector('.alert')
+  /*const alert = document.querySelector('alert')
   alert({
     text: "Producto añadido exitosamente",
     duration: 2500,
     style: {
       background: "linear-gradient(to right, #006400, #90EE90)",
     }
-    }).showToast();
+    }).showToast();*/
 
-  /*setTimeout( function(){
-    alert.classList.add('hide')
-  }, 2000)
-    alert.classList.remove('hide')*/
+ 
 
   const InputElemnto = tbody.getElementsByClassName('input__elemento')
   for(let i =0; i < carrito.length ; i++){
@@ -144,19 +142,15 @@ function removeItemCarrito(e){
     }
   }
 
-  const alert = document.querySelector('.remove')
-  alert({
+  buttonDelete.addEventListener("click", () => {
+  Toastify({
     text: "Producto removido exitosamente",
     duration: 2500,
     style: {
       background: "linear-gradient(to right, #ff0000, #ff8000)",
     }
-    }).showToast();
+    }).showToast(); })
 
-  /*setTimeout( function(){
-    alert.classList.add('remove')
-  }, 2000)
-    alert.classList.remove('remove')*/
 
   tr.remove()
   CarritoTotal()
@@ -214,9 +208,16 @@ const createBootstrapCard = (content = {}) => {
   //Creo el body, que esta misma funciona se encarga de llamar a las funciones que completan el body
   const cardBody = getCardBody(title, img, description, price);
   card.appendChild(cardBody);
+  /*const button = document.createElement('button');
+  button.type = 'button';
+  button.innerText = 'agregar a carrito'
+  button.classList.add("btn", "btn-primary", "button");
+  card.appendChild(button);*/
 
- // const cardFooter = getCardFooter(category);
- //card.appendChild(cardFooter);
+  
+
+ const cardButton = getCardButton();
+ card.appendChild(cardButton);
 
   return cardContainer;
 };
@@ -291,8 +292,7 @@ const getCardBody = (title, img, description, price) => {
   const cardDescription = getCardDescription(description);
   cardBody.appendChild(cardDescription);
 
- // const cardReviewsStars = getCardReviewsStars(stars);
- // cardBody.appendChild(cardReviewsStars);
+
 
   return cardBody;
 };
@@ -303,8 +303,8 @@ const getCardTitle = (title) => {
     return;
   }
 
-  const cardTitleContainer = document.createElement("h5");
-  cardTitleContainer.classList.add("card-title", "pt-2", "text-center", "text-white");
+  const cardTitleContainer = document.createElement("div");
+  cardTitleContainer.classList.add("card", "shadow", "mb-1", "bg-dark", "rounded");
 
   const cardTitle = document.createElement("h5");
   cardTitle.classList.add("card-title", "pt-2", "text-center", "text-white");
@@ -343,6 +343,36 @@ const getCardDescription = (description) => {
   cardDescription.appendChild(document.createTextNode(description));
 
   return cardDescription;
+};
+
+const getCardButton = () => {
+  
+
+  //Creo el div del boton.
+  const cardButton = document.createElement("div");
+  cardButton.classList.add(
+    "d-grid", "gap-2"
+  );
+
+  // Creo el elemento contenedor del boton.
+  const cardButtonContainer = document.createElement("button");
+  cardButtonContainer.classList.add("text-center", "btn", "btn-primary", "button");
+  cardButtonContainer.textContent = "Agregar a carrito";
+  cardButton.appendChild(cardButtonContainer);
+  Clickbutton.forEach(btn => {
+    btn.addEventListener('click', addToCarritoItem)
+  });
+ 
+
+  /*/ Elemento anchor de HMTL.
+  const cardButtonLink = document.createElement("button");
+  cardButtonLink.classList.add("btn", "btn-primary", "button");
+  cardButtonLink.textContent = "Agregar a carrito";
+  cardButton.appendChild(cardButtonTextContainer);
+  cardButtonTextContainer.appendChild(cardButtonLink);*/
+
+  // Retorno el footer.
+  return cardButton;
 };
 
 (() => {
