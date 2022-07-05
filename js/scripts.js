@@ -1,6 +1,6 @@
 
 
-const Clickbutton = document.querySelectorAll('.button')
+
 const tbody = document.querySelector('.tbody')
 let carrito = []
 
@@ -10,9 +10,7 @@ const domElements = {
   productsContainer: $("#cards-container"),
 };
 
-Clickbutton.forEach(btn => {
-  btn.addEventListener('click', addToCarritoItem)
-});
+
 //Render de productos en HTML!!!
 const renderProducts = (products = []) => {
   //Primero reviso si mi parámetro es un array. Si no lo es, lanzo un error.
@@ -37,7 +35,21 @@ const renderProducts = (products = []) => {
   });
   return;
 };
+const Clickbutton = document.querySelectorAll('.button.btn, .button.btn-primary, .button.button, .button.text-center')
 
+//cardButtonContainer.classList.add("btn", "btn-primary", "button", "text-center");
+
+Clickbutton.forEach(btn => {
+  btn.addEventListener('click', addToCarritoItem)
+  btn.addEventListener('click', () => {
+    Toastify({
+      text: "Producto añadido exitosamente",
+      duration: 2500,
+      style: {
+        background: "linear-gradient(to right, #006400, #90EE90)",
+      }
+      }).showToast();})
+});
 
 function addToCarritoItem(e){
   const button = e.target
@@ -58,17 +70,6 @@ function addToCarritoItem(e){
 
 
 function addItemCarrito(newItem){
-
-  /*const alert = document.querySelector('alert')
-  alert({
-    text: "Producto añadido exitosamente",
-    duration: 2500,
-    style: {
-      background: "linear-gradient(to right, #006400, #90EE90)",
-    }
-    }).showToast();*/
-
- 
 
   const InputElemnto = tbody.getElementsByClassName('input__elemento')
   for(let i =0; i < carrito.length ; i++){
@@ -142,7 +143,7 @@ function removeItemCarrito(e){
     }
   }
 
-  buttonDelete.addEventListener("click", () => {
+  tr.addEventListener('click', () => {
   Toastify({
     text: "Producto removido exitosamente",
     duration: 2500,
@@ -181,7 +182,7 @@ window.onload = function(){
   }
 }
 
-// contenido de cards.js
+// contenido de cards
 
 const createBootstrapCard = (content = {}) => {
   // Reviso si el content no tiene propiedades y lanzo un error si es asi.
@@ -208,16 +209,9 @@ const createBootstrapCard = (content = {}) => {
   //Creo el body, que esta misma funciona se encarga de llamar a las funciones que completan el body
   const cardBody = getCardBody(title, img, description, price);
   card.appendChild(cardBody);
-  /*const button = document.createElement('button');
-  button.type = 'button';
-  button.innerText = 'agregar a carrito'
-  button.classList.add("btn", "btn-primary", "button");
-  card.appendChild(button);*/
-
   
-
- const cardButton = getCardButton();
- card.appendChild(cardButton);
+  const cardButton = getCardButton();
+  card.appendChild(cardButton);
 
   return cardContainer;
 };
@@ -356,24 +350,14 @@ const getCardButton = () => {
 
   // Creo el elemento contenedor del boton.
   const cardButtonContainer = document.createElement("button");
-  cardButtonContainer.classList.add("text-center", "btn", "btn-primary", "button");
+  cardButtonContainer.classList.add("btn", "btn-primary", "button", "text-center");
   cardButtonContainer.textContent = "Agregar a carrito";
   cardButton.appendChild(cardButtonContainer);
-  Clickbutton.forEach(btn => {
-    btn.addEventListener('click', addToCarritoItem)
-  });
- 
 
-  /*/ Elemento anchor de HMTL.
-  const cardButtonLink = document.createElement("button");
-  cardButtonLink.classList.add("btn", "btn-primary", "button");
-  cardButtonLink.textContent = "Agregar a carrito";
-  cardButton.appendChild(cardButtonTextContainer);
-  cardButtonTextContainer.appendChild(cardButtonLink);*/
 
-  // Retorno el footer.
   return cardButton;
 };
+
 
 (() => {
   fetch ('/json/data.json')
